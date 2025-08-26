@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emiliano Vazquez - CV</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Paleta Pantone Green C */
+        :root {
+            --pantone-green: #00AD43;
+            --pantone-dark-green: #00843D;
+            --pantone-light-green: #9EE4B3;
+            --pantone-pale-green: #E2F1E6;
+            --text-dark: #2C2C2C;
+            --text-light: #5A5A5A;
+            --background: #FFFFFF;
+            --section-bg: #F7FBF8;
+            --border: #CCE1D2;
+        }
+        
+        /* Estilos generales */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            color: var(--text-dark);
+            background-color: var(--background);
+            line-height: 1.6;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .cv-container {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 30px;
+            box-shadow: 0 0 25px rgba(0, 0, 0, 0.08);
+            border-radius: 10px;
+            overflow: hidden;
+            padding: 30px;
+            background: white;
+        }
+        
+        /* Header */
+        .header {
+            grid-column: 1 / -1;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--pantone-green);
+        }
+        
+        .name-title {
+            flex: 2;
+        }
+        
+        h1 {
+            color: var(--pantone-dark-green);
+            font-size: 2.5rem;
+            margin-bottom: 5px;
+        }
+        
+        h2 {
+            color: var(--pantone-green);
+            font-size: 1.5rem;
+            font-weight: 500;
+        }
+        
+        .photo-container {
+            width: 160px;
+            height: 190px;
+            background-color: var(--pantone-pale-green);
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 2px solid var(--pantone-green);
+            color: var(--pantone-dark-green);
+            font-size: 0.9rem;
+            text-align: center;
+            padding: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            flex-direction: column;
+        }
+        
+        .photo-placeholder {
+            width: 100px;
+            height: 100px;
+            background-color: var(--pantone-light-green);
+            border-radius: 4px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 10px;
+            color: var(--pantone-green);
+        }
+        
+        /* Sección lateral */
+        .sidebar {
+            background-color: var(--section-bg);
+            padding: 25px;
+            border-radius: 10px;
+        }
+        
+        /* Sección principal */
+        .main-content {
+            padding: 10px;
+        }
+        
+        /* Elementos comunes */
+        .section {
+            margin-bottom: 25px;
+        }
+        
+        h3 {
+            color: var(--pantone-dark-green);
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--pantone-green);
+            display: flex;
+            align-items: center;
+        }
+        
+        h3 i {
+            margin-right: 10px;
+            color: var(--pantone-green);
+        }
+        
+        ul {
+            list-style-type: none;
+            padding-left: 5px;
+        }
+        
+        li {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        li i {
+            color: var(--pantone-green);
+            margin-right: 10px;
+            margin-top: 5px;
+            flex-shrink: 0;
+        }
+        
+        p {
+            text-align: justify;
+            margin-bottom: 10px;
+        }
+        
+        /* Experiencia laboral */
+        .job {
+            margin-bottom: 20px;
+        }
+        
+        .job-title {
+            font-weight: 600;
+            color: var(--pantone-dark-green);
+            font-size: 1.1rem;
+        }
+        
+        .company {
+            font-weight: 600;
+            color: var(--pantone-green);
+        }
+        
+        .date {
+            color: var(--pantone-dark-green);
+            font-style: italic;
+            margin: 5px 0;
+            font-size: 0.95rem;
+        }
+        
+        .job-description {
+            margin-top: 8px;
+        }
+        
+        /* Aptitudes horizontales con iconos a la derecha */
+        .skills-horizontal {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .skill-item {
+            display: flex;
+            align-items: center;
+            background-color: transparent;
+            border: 1px solid var(--pantone-green);
+            border-radius: 20px;
+            padding: 8px 15px;
+            transition: all 0.3s ease;
+        }
+        
+        .skill-item:hover {
+            background-color: var(--pantone-pale-green);
+            transform: translateY(-2px);
+        }
+        
+        .skill-text {
+            font-size: 0.9rem;
+            color: var(--pantone-dark-green);
+            margin-right: 8px;
+        }
+        
+        .skill-icon {
+            color: var(--pantone-green);
+            font-size: 1rem;
+        }
+        
+        /* Certificaciones mejoradas */
+        .certification {
+            margin-bottom: 15px;
+            padding-left: 5px;
+            position: relative;
+        }
+        
+        .cert-title {
+            font-weight: 600;
+            color: var(--pantone-dark-green);
+            margin-bottom: 3px;
+        }
+        
+        .cert-org {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-bottom: 3px;
+        }
+        
+        .cert-date {
+            color: var(--pantone-green);
+            font-size: 0.85rem;
+            font-style: italic;
+        }
+        
+        .cert-id {
+            color: var(--text-light);
+            font-size: 0.8rem;
+            font-family: monospace;
+            margin-top: 3px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 900px) {
+            .cv-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .photo-container {
+                margin-top: 20px;
+            }
+            
+            .skills-horizontal {
+                gap: 10px;
+            }
+            
+            .skill-item {
+                padding: 6px 12px;
+            }
+        }
+        
+        @media (max-width: 600px) {
+            .skills-horizontal {
+                justify-content: center;
+            }
+        }
+        
+        @media print {
+            body {
+                padding: 0;
+            }
+            
+            .cv-container {
+                box-shadow: none;
+                padding: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="cv-container">
+        <header class="header">
+            <div class="name-title">
+                <h1>Emiliano Vazquez</h1>
+                <h2>Líder de Producto & Estrategia | Transformación Digital & Logística</h2>
+            </div>
+            <div class="photo-container">
+                <div class="photo-placeholder">
+                    <i class="fas fa-camera fa-2x"></i>
+                </div>
+                <div>Espacio para tu foto</div>
+            </div>
+        </header>
+        
+        <aside class="sidebar">
+            <div class="section">
+                <h3><i class="fas fa-envelope"></i> Contacto</h3>
+                <ul>
+                    <li><i class="fas fa-envelope"></i> emilianov.vazquez@gmail.com</li>
+                    <li><i class="fab fa-linkedin"></i> linkedin.com/in/emiliano6</li>
+                    <li><i class="fas fa-map-marker-alt"></i> Argentina</li>
+                </ul>
+            </div>
+            
+            <div class="section">
+                <h3><i class="fas fa-language"></i> Idiomas</h3>
+                <ul>
+                    <li><i class="fas fa-check"></i> Español (Nativo)</li>
+                    <li><i class="fas fa-check"></i> Inglés (Profesional Completo)</li>
+                    <li><i class="fas fa-check"></i> Portugués (Básico)</li>
+                </ul>
+            </div>
+            
+            <div class="section">
+                <h3><i class="fas fa-graduation-cap"></i> Educación</h3>
+                <div class="job">
+                    <div class="company">Universidad de Buenos Aires</div>
+                    <div class="job-title">Magister en Ingeniería de Dirección Industrial</div>
+                    <div class="date">2013 - 2015 (Tesis pendiente)</div>
+                </div>
+                <div class="job">
+                    <div class="company">Universidad Tecnológica Nacional</div>
+                    <div class="job-title">Ingeniero Industrial</div>
+                    <div class="date">2006 - 2011</div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h3><i class="fas fa-certificate"></i> Certificaciones</h3>
+                
+                <div class="certification">
+                    <div class="cert-title">Desarrollo Web</div>
+                    <div class="cert-org">Coderhouse</div>
+                    <div class="cert-date">Expedición: jul. 2025</div>
+                    <div class="cert-id">ID: 7e2d952b-110d-4504-ae80-ee3d05adf06d</div>
+                </div>
+                
+                <div class="certification">
+                    <div class="cert-title">Certified Product Manager (CPM)</div>
+                    <div class="cert-org">Coderhouse</div>
+                    <div class="cert-date">Expedición: sept. 2021</div>
+                </div>
+                
+                <div class="certification">
+                    <div class="cert-title">AZ-900 Microsoft Azure Fundamentals</div>
+                    <div class="cert-org">IT College</div>
+                    <div class="cert-date">Expedición: jun. 2021</div>
+                    <div class="cert-id">ID: 34467278</div>
+                </div>
+                
+                <div class="certification">
+                    <div class="cert-title">Build a high performance team</div>
+                    <div class="cert-org">Udemy</div>
+                    <div class="cert-date">Expedición: jul. 2022</div>
+                    <div class="cert-id">ID: UC-7565ec9c-6bf6-4567-bc85-653db4c378a6</div>
+                </div>
+                
+                <div class="certification">
+                    <div class="cert-title">Digital transformation 2023</div>
+                    <div class="cert-org">Udemy</div>
+                    <div class="cert-date">Expedición: ene. 2023</div>
+                    <div class="cert-id">ID: UC-07388f84-1dce-481e-a57b-66349d4da65a</div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h3><i class="fas fa-star"></i> Aptitudes Clave</h3>
+                <div class="skills-horizontal">
+                    <div class="skill-item">
+                        <span class="skill-text">Gestión Producto</span>
+                        <i class="skill-icon fas fa-chart-line"></i>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-text">Transformación Digital</span>
+                        <i class="skill-icon fas fa-digital-tachograph"></i>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-text">Estrategia Logística</span>
+                        <i class="skill-icon fas fa-truck"></i>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-text">Gestión de Pedidos</span>
+                        <i class="skill-icon fas fa-clipboard-list"></i>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-text">SAP</span>
+                        <i class="skill-icon fas fa-database"></i>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-text">Liderazgo</span>
+                        <i class="skill-icon fas fa-users"></i>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-text">Metodologías Ágiles</span>
+                        <i class="skill-icon fas fa-sync-alt"></i>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-text">Optimización</span>
+                        <i class="skill-icon fas fa-cogs"></i>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-text">Power BI</span>
+                        <i class="skill-icon fas fa-chart-bar"></i>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-text">Gestión Presupuestaria</span>
+                        <i class="skill-icon fas fa-money-bill-wave"></i>
+                    </div>
+                </div>
+            </div>
+        </aside>
+        
+        <main class="main-content">
+            <div class="section">
+                <h3><i class="fas fa-user"></i> Perfil Profesional</h3>
+                <p>Ingeniero Industrial con más de 13 años de trayectoria liderando la convergencia entre tecnología, logística y estrategia comercial. Experto en dirigir programas de transformación digital de gran envergadura (hasta USD 3M) y en optimizar operaciones complejas, logrando incrementos sostenidos en eficiencia y rentabilidad.</p>
+                <p>Con una marcada orientación al cliente y al nivel de servicio, diseño e implemento soluciones que fortalecen la competitividad del negocio. Con experiencia comprobada en la conducción de equipos multifuncionales (7 directos, 20 indirectos), movilizo talento, promuevo la innovación y aseguro la entrega de resultados tangibles y de alto impacto en organizaciones multinacionales.</p>
+            </div>
+            
+            <div class="section">
+                <h3><i class="fas fa-briefcase"></i> Experiencia Profesional</h3>
+                
+                <div class="job">
+                    <div class="job-title">Principal Product Manager - Order Management</div>
+                    <div class="company">Cervecería y Maltería Quilmes | Argentina</div>
+                    <div class="date">Febrero 2024 - Presente</div>
+                    <div class="job-description">
+                        <ul>
+                            <li><i class="fas fa-caret-right"></i> Liderazgo de la estrategia de producto digital para la gestión de pedidos en 5 mercados (Argentina, Uruguay, Bolivia, Paraguay, Chile).</li>
+                            <li><i class="fas fa-caret-right"></i> Gestión de un presupuesto de USD 1.5M y liderazgo de un equipo de 7 personas a cargo directo y 20 indirectos.</li>
+                            <li><i class="fas fa-caret-right"></i> Colaboración con equipos multidisciplinarios para mejorar la eficiencia operativa y la experiencia del cliente a nivel regional.</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="job">
+                    <div class="job-title">Logistics Project Manager Andina</div>
+                    <div class="company">Cervecería y Maltería Quilmes | Argentina</div>
+                    <div class="date">Febrero 2023 - Enero 2024</div>
+                    <div class="job-description">
+                        <ul>
+                            <li><i class="fas fa-caret-right"></i> Punto focal único para proyectos de tecnología en logística para la zona Andina (Paraguay, Bolivia, Chile).</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="job">
+                    <div class="job-title">Logistics Project Manager SAP</div>
+                    <div class="company">Cervecería y Maltería Quilmes | Argentina</div>
+                    <div class="date">Agosto 2020 - Enero 2023</div>
+                    <div class="job-description">
+                        <ul>
+                            <li><i class="fas fa-caret-right"></i> Lideré el diseño e implementación de SAP para logística primaria y secundaria en Latinoamérica Sur.</li>
+                            <li><i class="fas fa-caret-right"></i> Logro clave: Optimización del flujo de control de camiones, reduciendo los tiempos de ciclo en planta en un 10%.</li>
+                            <li><i class="fas fa-caret-right"></i> Proyecto de logística más importante de la compañía (presupuesto total: USD 3M), actuando como motor central de la transformación digital.</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="job">
+                    <div class="job-title">Jefe de Programación y Planificación</div>
+                    <div class="company">Cervecería y Maltería Quilmes | Argentina</div>
+                    <div class="date">Junio 2018 - Agosto 2020</div>
+                    <div class="job-description">
+                        <ul>
+                            <li><i class="fas fa-caret-right"></i> Gestión de equipos y recursos en la principal planta de gaseosas. Responsable de la productividad, presupuesto de volumen y planificación de la producción.</li>
+                            <li><i class="fas fa-caret-right"></i> Aseguramiento de la disponibilidad de producto y gestión del ingreso y movimiento de insumos.</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="job">
+                    <div class="job-title">Tutor de Proyecto Final & Jefe de Trabajos Prácticos</div>
+                    <div class="company">Universidad Tecnológica Nacional | Avellaneda, Argentina</div>
+                    <div class="date">Marzo 2014 - Presente</div>
+                    <div class="job-description">
+                        <ul>
+                            <li><i class="fas fa-caret-right"></i> Tutor de Proyecto Final (2025 - Presente).</li>
+                            <li><i class="fas fa-caret-right"></i> Jefe de Trabajos Prácticos - Simulación Industrial (Mar 2014 - Dic 2024).</li>
+                            <li><i class="fas fa-caret-right"></i> Docencia en metodologías de simulación para la industria, preparando a futuros profesionales para la toma de decisiones en entornos dinámicos y colaborativos.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Efecto sutil de aparición para los elementos
+        document.addEventListener('DOMContentLoaded', function() {
+            const elements = document.querySelectorAll('.job, .certification, .skill-item');
+            
+            elements.forEach((element, index) => {
+                element.style.opacity = '0';
+                element.style.transform = 'translateY(20px)';
+                element.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                
+                setTimeout(() => {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }, 100 + (index * 100));
+            });
+        });
+    </script>
+</body>
+</html>
